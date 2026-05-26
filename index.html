@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coming Soon</title>
+  <meta name="description" content="We are launching our website soon." />
+
+  <style>
+    :root {
+      --white: #f7f4ea;
+      --muted: rgba(247, 244, 234, 0.78);
+      --line: rgba(247, 244, 234, 0.68);
+      --panel: rgba(15, 18, 18, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Arial, "Helvetica Neue", sans-serif;
+      color: var(--white);
+      background: #111;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100svh;
+      position: relative;
+      isolation: isolate;
+      padding: clamp(22px, 2.15vw, 42px);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    /* Background: gradient + city-light particles, all CSS so you do not need images */
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(circle at 14% 74%, rgba(255, 178, 43, 0.32) 0 1px, transparent 2px),
+        radial-gradient(circle at 35% 62%, rgba(255, 220, 140, 0.28) 0 1px, transparent 2px),
+        radial-gradient(circle at 55% 70%, rgba(255, 182, 80, 0.32) 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 50%, rgba(255, 228, 140, 0.18) 0 1px, transparent 2px),
+        linear-gradient(115deg, #202123 0%, #383528 28%, #726010 50%, #213e29 73%, #071e1d 100%);
+      background-size:
+        13px 13px,
+        19px 19px,
+        29px 29px,
+        37px 37px,
+        cover;
+      filter: saturate(1.05);
+    }
+
+    .page::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse at 18% 84%, rgba(9, 52, 55, 0.76), transparent 38%),
+        radial-gradient(ellipse at 54% 84%, rgba(12, 22, 24, 0.48), transparent 42%),
+        radial-gradient(ellipse at 84% 42%, rgba(2, 33, 28, 0.56), transparent 44%),
+        linear-gradient(to bottom, rgba(0,0,0,0.03), rgba(0,0,0,0.36));
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .grain {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.18;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 20% 30%, #fff 0 0.8px, transparent 1px),
+        radial-gradient(circle at 80% 70%, #fff 0 0.7px, transparent 1px);
+      background-size: 5px 5px, 7px 7px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .menu {
+      width: 40px;
+      height: 30px;
+      display: inline-grid;
+      gap: 7px;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .menu span {
+      display: block;
+      height: 2px;
+      background: var(--white);
+      border-radius: 99px;
+    }
+
+    .hero {
+      padding-top: clamp(8px, 2vw, 28px);
+    }
+
+    .headline {
+      margin: 0;
+      max-width: 1400px;
+      font-size: clamp(76px, 13.7vw, 248px);
+      line-height: 0.84;
+      letter-spacing: -0.075em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .bottom {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.62fr) minmax(280px, 0.85fr) minmax(160px, 0.45fr);
+      gap: clamp(28px, 6vw, 110px);
+      align-items: end;
+      padding-bottom: clamp(18px, 2.2vw, 38px);
+    }
+
+    .mini-title {
+      font-size: clamp(26px, 2.05vw, 40px);
+      line-height: 1.16;
+      letter-spacing: -0.04em;
+      font-weight: 780;
+      text-transform: uppercase;
+      margin: 0 0 64px;
+      max-width: 360px;
+    }
+
+    .visit {
+      color: var(--white);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: clamp(24px, 1.7vw, 34px);
+      font-weight: 780;
+      letter-spacing: -0.04em;
+    }
+
+    .signup {
+      max-width: 560px;
+    }
+
+    .signup h2 {
+      margin: 0 0 32px;
+      font-size: clamp(25px, 1.9vw, 36px);
+      font-weight: 430;
+      letter-spacing: -0.04em;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: clamp(18px, 1.3vw, 26px);
+      font-weight: 430;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      height: 64px;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      color: var(--white);
+      padding: 0 18px;
+      font-size: 20px;
+      outline: none;
+      backdrop-filter: blur(6px);
+    }
+
+    input[type="email"]:focus {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .submit {
+      min-width: 118px;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .submit:hover {
+      background: rgba(255,255,255,0.16);
+    }
+
+    .check {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: clamp(18px, 1.25vw, 25px);
+      line-height: 1.25;
+    }
+
+    .check input {
+      appearance: none;
+      flex: 0 0 auto;
+      width: 26px;
+      height: 26px;
+      margin-top: 2px;
+      border: 2px solid var(--line);
+      border-radius: 2px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .check input:checked {
+      background:
+        linear-gradient(135deg, transparent 0 42%, var(--white) 43% 56%, transparent 57%),
+        linear-gradient(45deg, transparent 0 46%, var(--white) 47% 60%, transparent 61%);
+    }
+
+    .policy {
+      color: var(--white);
+      font-size: clamp(18px, 1.3vw, 25px);
+      text-decoration: none;
+      justify-self: start;
+      margin-bottom: 4px;
+    }
+
+    .policy:hover,
+    .visit:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    @media (max-width: 920px) {
+      .page {
+        padding: 22px;
+      }
+
+      .headline {
+        font-size: clamp(68px, 21vw, 138px);
+        line-height: 0.88;
+      }
+
+      .bottom {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        align-items: start;
+        padding-top: 80px;
+      }
+
+      .mini-title {
+        margin-bottom: 28px;
+      }
+
+      .signup {
+        max-width: 100%;
+      }
+
+      .policy {
+        margin-top: 4px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .headline {
+        letter-spacing: -0.065em;
+      }
+
+      .input-row {
+        flex-direction: column;
+      }
+
+      .submit {
+        height: 52px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="topbar" aria-label="Site navigation">
+      <button class="menu" aria-label="Open menu" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <section class="hero" aria-label="Coming soon">
+      <h1 class="headline">Coming<br />Soon</h1>
+    </section>
+
+    <section class="bottom" aria-label="Launch information">
+      <div>
+        <p class="mini-title">We are<br />launching our<br />website soon</p>
+        <a class="visit" href="mailto:hello@example.com">Come visit</a>
+      </div>
+
+      <!-- Static sites cannot store emails by themselves.
+           Later you can connect this form to Formspree / Buttondown / Mailchimp / Cloudflare Worker. -->
+      <form class="signup" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <h2>Join our Mailing List</h2>
+
+        <div class="field">
+          <label for="email">Email *</label>
+          <div class="input-row">
+            <input id="email" name="email" type="email" autocomplete="email" required />
+            <button class="submit" type="submit">Join</button>
+          </div>
+        </div>
+
+        <label class="check">
+          <input name="newsletter" type="checkbox" required />
+          <span>Yes, subscribe me to your newsletter. *</span>
+        </label>
+      </form>
+
+      <a class="policy" href="#">Privacy Policy</a>
+    </section>
+  </main>
+</body>
+</html>
